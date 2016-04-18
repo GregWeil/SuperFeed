@@ -27,6 +27,22 @@ export default class App extends Component {
     this.props.actions.getPosts()
   }
 
+  async likePost (post) {
+    await SF_API.post('likePost', {
+      post,
+      user: this.props.auth.id,
+      accessToken: this.props.auth.accessToken
+    })
+  }
+
+  async unlikePost (post) {
+    await SF_API.post('unlikePost', {
+      post,
+      user: this.props.auth.id,
+      accessToken: this.props.auth.accessToken
+    })
+  }
+
   render () {
     return <div>
       <NavContainer>
