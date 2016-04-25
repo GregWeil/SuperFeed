@@ -33,6 +33,8 @@ export default class App extends Component {
       user: this.props.auth.id,
       accessToken: this.props.auth.accessToken
     })
+    
+    this.props.actions.getPosts()
   }
 
   async unlikePost (post) {
@@ -41,6 +43,8 @@ export default class App extends Component {
       user: this.props.auth.id,
       accessToken: this.props.auth.accessToken
     })
+    
+    this.props.actions.getPosts()
   }
 
   render () {
@@ -48,7 +52,7 @@ export default class App extends Component {
       <NavContainer>
         <div className='ui text container'>
           <CreatePostForm onSubmit={::this.createPost} />
-          <Feed posts={this.props.app.posts} />
+          <Feed posts={this.props.app.posts} user={this.props.auth.id} onLike={::this.likePost} onUnlike={::this.unlikePost} />
         </div>
       </NavContainer>
       <BottomNav>
